@@ -1,0 +1,8 @@
+/applicationContext-mongodb.xml
+/applicationContext-quartz.xml
+/applicationContext.xml
+/com/
+/ehcache.xml
+/jdbc.properties
+/log4j.properties
+/springAnnotation-servlet.xml
