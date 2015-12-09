@@ -6,29 +6,37 @@ basepath = http://115.28.40.128:8080/news
 ####获取某类别文章
 	url=basepath+/article/getArticleList
    	参数：
-    {"key":"dua系统中app的key,是一个32位的字符串"，"dua":"64位的整型：bigint/long long"，“channel”:"文章的类型。int型数字"，“latestN”:“int整形，要获取最近的多少篇文章”,"localid":"客户端上次更新的文章的最新id"}
+    {
+        "key":"dua系统中app的key,是一个32位的字符串"，
+        "dua":"64位的整型：bigint/long long"，"channel":
+        "文章的类型。int型数字"，
+        "latestN":"int整形，要获取最近的多少篇文章",
+        "localid":"客户端上次更新的文章的最新id"
+    }
     返回值：
     1.失败{"status":"error","data":"news服务器维护12：00~3：00中"}//有可能是key值不存在，dua_id无权限。
     2.成功{"status":"ok","data":[
     {
-    "id":"1",
-    "title":"题目",
-    "brief":"简介",
-    "digest":"摘要信息",
-    "content":"文章内容",
-    "image":"文章缩略图路径",
-    "keywords":"关键词",
-    "istop":"是否置顶0不置顶 1置顶",
-    "original":"是否原创0否1是",
-    "views":"阅读数量",
-    "likes":"点赞数",
-    "hate":"点才数",
-    "comments":"评论数",
-    "status":"状态0删除1未审核2审核未通过3审核通过",
-    "copyfrom":"版权来自",
-    "author":"作者名字",
-    "time":"创建日期",
-    },{....}]}
+        "id":"1",
+        "title":"题目",
+        "brief":"简介",
+        "digest":"摘要信息",
+        "content":"文章内容",
+        "image":"文章缩略图路径",
+        "keywords":"关键词",
+        "istop":"是否置顶0不置顶 1置顶",
+        "original":"是否原创0否1是",
+        "views":"阅读数量",
+        "likes":"点赞数",
+        "hate":"点才数",
+        "comments":"评论数",
+        "status":"状态0删除1未审核2审核未通过3审核通过",
+        "copyfrom":"版权来自",
+        "author":"作者名字",
+        "time":"创建日期",
+    },
+    {....}
+    ]}
     
 ####文章点赞一次|点踩一次
 	url=basepath+/article/putArticle

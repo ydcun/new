@@ -39,7 +39,7 @@ public class Article {
 	/**评论数量**/
 	private Integer comments;
 	/**状态 0删除（逻辑） 1未审核 2审核没有通过 3审核通过**/
-	private Integer state;
+	private Integer status;
 	/**文章来源（文字描述）**/
 	private String copyfrom;
 	/**作者名字 以字符串表达署名**/
@@ -314,23 +314,25 @@ public class Article {
 	public void setComments(Integer comments) {
 		this.comments = comments;
 	}
-	
+		
 	/**  
 	 * 获取状态0删除（逻辑）1未审核2审核没有通过3审核通过  
-	 * @return state 状态0删除（逻辑）1未审核2审核没有通过3审核通过  
+	 * @return status 状态0删除（逻辑）1未审核2审核没有通过3审核通过  
 	 */
-	public Integer getState() {
-		return state;
+	public Integer getStatus() {
+		return status;
 	}
 	
+
 	/**  
 	 * 设置状态0删除（逻辑）1未审核2审核没有通过3审核通过  
-	 * @param state 状态0删除（逻辑）1未审核2审核没有通过3审核通过  
+	 * @param status 状态0删除（逻辑）1未审核2审核没有通过3审核通过  
 	 */
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
+
 	/**  
 	 * 获取文章来源（文字描述）  
 	 * @return copyfrom 文章来源（文字描述）  

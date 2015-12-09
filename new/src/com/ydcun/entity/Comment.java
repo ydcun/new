@@ -13,7 +13,7 @@ public class Comment {
 	/**评论内容**/
 	private String content;
 	/**评论状态 0无效（逻辑删除） 1有效普通评论**/
-	private Integer state;
+	private Integer status;
 	/**评论时间**/
 	private Date time;
 	/**评论用户 dua_id**/
@@ -78,22 +78,25 @@ public class Comment {
 		this.content = content;
 	}
 	
+	
 	/**  
 	 * 获取评论状态0无效（逻辑删除）1有效普通评论  
-	 * @return state 评论状态0无效（逻辑删除）1有效普通评论  
+	 * @return status 评论状态0无效（逻辑删除）1有效普通评论  
 	 */
-	public Integer getState() {
-		return state;
+	public Integer getStatus() {
+		return status;
 	}
 	
+
 	/**  
 	 * 设置评论状态0无效（逻辑删除）1有效普通评论  
-	 * @param state 评论状态0无效（逻辑删除）1有效普通评论  
+	 * @param status 评论状态0无效（逻辑删除）1有效普通评论  
 	 */
-	public void setState(Integer state) {
-		this.state = state;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
+
 	/**  
 	 * 获取评论时间  
 	 * @return time 评论时间  

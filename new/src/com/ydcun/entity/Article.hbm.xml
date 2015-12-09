@@ -28,7 +28,7 @@
         <property name="likes" />
         <property name="hate" />
         <property name="comments" />
-        <property name="state" />
+        <property name="status" />
         <property name="copyfrom" />
         <property name="author_name" />
         <property name="author" />

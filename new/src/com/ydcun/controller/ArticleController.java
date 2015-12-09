@@ -43,34 +43,31 @@ public class ArticleController {
 			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
 			Map<String,Object> subMap = new HashMap<String, Object>();
 			for(Article ar:arlist){
-				subMap.put("id",ar.getId());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
-				subMap.put("title",ar.getTitle());
+				subMap.put("id",ar.getAid());//"1",
+		        subMap.put("title",ar.getTitle());//"题目",
+		        subMap.put("brief",ar.getBrief());//"简介",
+		        subMap.put("digest",ar.getDigest());//"摘要信息",
+		        subMap.put("content",ar.getContent());//"文章内容",
+		        subMap.put("image"),ar.getImage();//"文章缩略图路径",
+		        subMap.put("keywords");//"关键词",
+		        subMap.put("istop");//"是否置顶0不置顶 1置顶",
+		        subMap.put("original");//"是否原创0否1是",
+		        subMap.put("views");//"阅读数量",
+		        subMap.put("likes");//"点赞数",
+		        subMap.put("hate");//"点才数",
+		        subMap.put("comments");//"评论数",
+		        subMap.put("status");//"状态0删除1未审核2审核未通过3审核通过",
+		        subMap.put("copyfrom");//"版权来自",
+		        subMap.put("author");//"作者名字",
+		        subMap.put("time");//"创建日期",
 				subList.add(subMap);
 			}
-			result.put("articleList",subList);
-			result.put("reslut", "ok");
+			result.put("data",subList);
+			result.put("status", "ok");
 		}catch(Exception e){
 			e.printStackTrace();
-			result.put("error",e.getMessage());
+			result.put("status", "error");
+			result.put("data",e.getMessage());
 		}finally {
 			return new Gson().toJson(result);
 		}

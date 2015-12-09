@@ -15,7 +15,7 @@
             <column name="article_id" not-null="true"></column>
         </many-to-one>
         <property name="content" />
-        <property name="state" />
+        <property name="status" />
         <property name="time" />
         <property name="userid" />
         <property name="username" />
