@@ -49,6 +49,12 @@ public class CommentController {
 			}
 			BigInteger dua_id = new BigInteger(dua);
 			
+			String aid = map.get("aid");//"文章的类型。int型数字"，
+			if(Util.isEmptyString(aid)){
+				throw new InfoException("page 不能为空或空串");
+			}
+			Integer aid_int = new Integer(aid);
+			
 			String page = map.get("page");//"文章的类型。int型数字"，
 			if(Util.isEmptyString(page)){
 				throw new InfoException("page 不能为空或空串");
@@ -63,7 +69,7 @@ public class CommentController {
 			
 			List<Comment> commlist =null;
 			//获取某文章的评论信息
-			commlist = commentServiceImpl.getArticleList(key,dua_id,page_int,num_int); 
+			commlist = commentServiceImpl.getArticleList(key,dua_id,aid_int,page_int,num_int); 
 			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
 			Map<String,Object> subMap = new HashMap<String, Object>();
 			for(Comment comm:commlist){
@@ -136,7 +142,7 @@ public class CommentController {
 			if(Util.isEmptyString(ip)){
 				throw new InfoException("ip 不能为空或空串");
 			}
-			this.commentServiceImpl.addComment(key,article_id,content,userid_int,username,location,lonlat,ip);
+			this.commentServiceImpl.addComment(key,aid,content,userid_int,username,location,lonlat,ip);
 			
 			result.put("status", "ok");
 		}catch(Exception e){

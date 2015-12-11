@@ -24,7 +24,7 @@ import com.ydcun.mysql.service.IArticleService;
 import freemarker.template.utility.StringUtil;
 
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/articles")
 public class ArticleController {
 	@Autowired
     private IArticleService  articleServiceImpl;
@@ -70,7 +70,7 @@ public class ArticleController {
 			}else if(!Util.isNum(aid)){
 				throw new InfoException("aid 不是数字串");
 			}
-			Integer aid_int = new Integer(channel);
+			Integer aid_int = new Integer(aid);
 			
 			// 实例化 
 			List<Article> arlist = articleServiceImpl.getArticleList(key, dua_id, channel, num_int, aid_int); 
@@ -126,6 +126,13 @@ public class ArticleController {
 				throw new InfoException("dua 不是数字串");
 			}
 			Integer dua_id = new Integer(dua);
+			String aid = map.get("aid");//int 文章id
+			if(Util.isEmptyString(aid)){
+				throw new InfoException("aid 不能为空或空串");
+			}else if(!Util.isNum(aid)){
+				throw new InfoException("aid 不是数字串");
+			}
+			Integer aid_int = new Integer(aid);
 			
 			String action = map.get("action");
 			if(Util.isEmptyString(action)){
@@ -134,11 +141,11 @@ public class ArticleController {
 				throw new InfoException("action 不是数字串");
 			}
 			if(action.equals("1")){//点击阅读
-				this.articleServiceImpl.addViews(key,dua_id);
+				this.articleServiceImpl.addViews(key,dua_id,aid_int);
 			}else if(action.equals("2")){//文章点赞
-				this.articleServiceImpl.addLike(key,dua_id);
+				this.articleServiceImpl.addLike(key,dua_id,aid_int);
 			}else if(action.equals("3")){//文章点踩数
-				this.articleServiceImpl.addHate(key,dua_id);
+				this.articleServiceImpl.addHate(key,dua_id,aid_int);
 			}
 			result.put("status", "ok");
 		}catch(Exception e){

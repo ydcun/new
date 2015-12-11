@@ -8,7 +8,7 @@ import com.ydcun.entity.Article;
 /**
  *文章
  */
-public interface IArticleDao {
+public interface IArticleDao extends IBaseDao<Article>{
 
 	/**
 	 * 添加文章
@@ -28,12 +28,6 @@ public interface IArticleDao {
 	 * @return
 	 */
 	public List<Article> finAricleList(Date beginDate,Date endDate);
-	
-	/**
-	 * 修改文章记录
-	 * @param article
-	 */
-	public void editAricle(Article article);
 	/**
 	 * 获取所有记录
 	 * @return

@@ -57,7 +57,8 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	 */
 	@Override
 	public void updateEntity(Object entity) {
-		this.getSession().update(entity);
+		Session session = this.getSession();
+		session.update(entity);
 	}
 
 }

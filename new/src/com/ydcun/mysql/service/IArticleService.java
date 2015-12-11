@@ -53,20 +53,24 @@ public interface IArticleService {
 	 * 文章阅读数++
 	 * @param key 权限密钥
 	 * @param dua_id 用户dua_id
+	 * @param aid_int 
+	 * @throws Exception 
 	 * 
 	 */
-	public void addViews(String key, Integer dua_id);
+	public void addViews(String key, Integer dua_id, Integer aid_int) throws Exception;
 	/**
 	 * 文章点赞
 	 * @param key
 	 * @param dua_id
+	 * @param aid_int 
 	 */
-	public void addLike(String key, Integer dua_id);
+	public void addLike(String key, Integer dua_id, Integer aid_int) throws Exception;
 	/**
 	 * 文章点踩
 	 * @param key
 	 * @param dua_id
+	 * @param aid_int 
 	 */
-	public void addHate(String key, Integer dua_id);
+	public void addHate(String key, Integer dua_id, Integer aid_int) throws Exception;
 
 }

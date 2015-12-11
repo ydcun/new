@@ -44,13 +44,6 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article> implements IArticleDao 
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void editAricle(Article article) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/* (non-Javadoc)
 	 * @see com.ydcun.mysql.dao.IArticleDao#getAllArticle()
 	 */
@@ -78,7 +71,7 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article> implements IArticleDao 
 		Query q = this.getSession().createQuery(hql);
 		q.setMaxResults(latestN);
 		q.setFirstResult(0);
-		return super.findAll(hql);
+		return q.list();
 	}
 	
 

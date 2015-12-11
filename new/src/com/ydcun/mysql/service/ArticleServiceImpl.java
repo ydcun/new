@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ydcun.entity.Article;
 import com.ydcun.exception.InfoException;
@@ -16,6 +17,7 @@ import com.ydcun.mysql.dao.IArticleDao;
  *文章
  */
 @Service
+@Transactional
 public class ArticleServiceImpl implements IArticleService {
 	
 	@Autowired
@@ -70,17 +72,28 @@ public class ArticleServiceImpl implements IArticleService {
 	 * @see com.ydcun.mysql.service.IArticleService#addViews(java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public void addViews(String key, Integer dua_id) {
-		// TODO Auto-generated method stub
-		
+	public void addViews(String key, Integer dua_id,Integer aid_int) throws Exception {
+		Article ar = this.articleDaoImpl.finAricleById(aid_int);
+		if(ar!=null){
+			ar.setViews(ar.getViews()==null?1:ar.getViews()+1);
+			this.articleDaoImpl.updateEntity(ar);
+		}else{
+			throw new InfoException("没有对应的文章");
+		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.ydcun.mysql.service.IArticleService#addLike(java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public void addLike(String key, Integer dua_id) {
-		// TODO Auto-generated method stub
+	public void addLike(String key, Integer dua_id,Integer aid_int) throws Exception {
+		Article ar = this.articleDaoImpl.finAricleById(aid_int);
+		if(ar!=null){
+			ar.setLikes(ar.getLikes()==null?1:ar.getLikes()+1);
+			this.articleDaoImpl.updateEntity(ar);
+		}else{
+			throw new InfoException("没有对应的文章");
+		}
 		
 	}
 
@@ -88,8 +101,13 @@ public class ArticleServiceImpl implements IArticleService {
 	 * @see com.ydcun.mysql.service.IArticleService#addHate(java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public void addHate(String key, Integer dua_id) {
-		// TODO Auto-generated method stub
-		
+	public void addHate(String key, Integer dua_id,Integer aid_int) throws Exception {
+		Article ar = this.articleDaoImpl.finAricleById(aid_int);
+		if(ar!=null){
+			ar.setHate(ar.getHate()==null?1:ar.getHate()+1);
+			this.articleDaoImpl.updateEntity(ar);
+		}else{
+			throw new InfoException("没有对应的文章");
+		}
 	}
 }

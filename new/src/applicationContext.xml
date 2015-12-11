@@ -10,7 +10,9 @@
     default-autowire="byName" default-lazy-init="true">
     
     <!-- 说明：下面有的Bean配置提供了多种方案，请根据需要采用某一种（别忘了注释掉其他同类方案） -->
-
+	<context:component-scan base-package="com.ydcun.controller,com.ydcun.mysql.dao,com.ydcun.mysql.service" >   
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />   
+	</context:component-scan> 
 	<!-- 自动加载属性配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
