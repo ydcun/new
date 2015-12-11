@@ -34,8 +34,8 @@ public class CommentServiceImpl implements ICommentService {
 	 * @see com.ydcun.mysql.service.ICommentService#addLike(java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public void addLike(String key, Integer dua_id) throws Exception {
-		Comment comm  = this.commentDaoImpl.findComment(dua_id);
+	public void addLike(String key, Integer dua_id,Integer article_int,Integer comment_int) throws Exception {
+		Comment comm  = this.commentDaoImpl.findComment(comment_int);
 		if(comm!=null){
 			comm.setLikes(comm.getLikes()==null?1:comm.getLikes()+1);
 			this.commentDaoImpl.updateEntity(comm);
@@ -48,8 +48,8 @@ public class CommentServiceImpl implements ICommentService {
 	 * @see com.ydcun.mysql.service.ICommentService#addHate(java.lang.String, java.lang.Integer)
 	 */
 	@Override
-	public void addHate(String key, Integer dua_id) throws Exception {
-		Comment comm  = this.commentDaoImpl.findComment(dua_id);
+	public void addHate(String key, Integer dua_id,Integer article_int,Integer comment_int) throws Exception {
+		Comment comm  = this.commentDaoImpl.findComment(comment_int);
 		if(comm!=null){
 			comm.setHate(comm.getHate()==null?1:comm.getHate()+1);
 			this.commentDaoImpl.updateEntity(comm);

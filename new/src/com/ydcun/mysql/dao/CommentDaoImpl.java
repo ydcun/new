@@ -38,7 +38,7 @@ public class CommentDaoImpl extends BaseDaoImpl<Comment> implements ICommentDao{
 		}
 		q.setMaxResults(page_int*num_int);
 		q.setFirstResult((page_int-1)*num_int);
-		return super.findAll(hql);
+		return q.list();
 		
 	}
 

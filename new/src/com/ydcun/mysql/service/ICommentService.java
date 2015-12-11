@@ -16,16 +16,20 @@ public interface ICommentService {
 	 * 评论点赞
 	 * @param key
 	 * @param dua_id
+	 * @param comment_int 
+	 * @param article_int 
 	 * @throws Exception 
 	 */
-	public void addLike(String key, Integer dua_id) throws Exception;
+	public void addLike(String key, Integer dua_id, Integer article_int, Integer comment_int) throws Exception;
 	/**
 	 * 评论点踩
 	 * @param key
 	 * @param dua_id
+	 * @param comment_int 
+	 * @param article_int 
 	 * @throws Exception 
 	 */
-	public void addHate(String key, Integer dua_id) throws Exception;
+	public void addHate(String key, Integer dua_id, Integer article_int, Integer comment_int) throws Exception;
 	/**
 	 * 获某文章的评论
 	 * @param key

@@ -25,7 +25,7 @@ import com.ydcun.mysql.service.ICommentService;
 
 
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("/comments")
 public class CommentController {
 	@Autowired
     private ICommentService  commentServiceImpl;
@@ -174,28 +174,32 @@ public class CommentController {
 			}
 			Integer dua_id = new Integer(dua);
 			
-			String articl_id = map.get("articl_id");
-			if(Util.isEmptyString(articl_id)){
-				throw new InfoException("articl_id 不能为空或空串");
-			}else if(!Util.isNum(articl_id)){
-				throw new InfoException("articl_id 不是数字串");
+			String article_id = map.get("article_id");
+			if(Util.isEmptyString(article_id)){
+				throw new InfoException("article_id 不能为空或空串");
+			}else if(!Util.isNum(article_id)){
+				throw new InfoException("article_id 不是数字串");
 			}
+			Integer article_int = new Integer(article_id);
+			
 			String comment_id = map.get("comment_id");
 			if(Util.isEmptyString(comment_id)){
 				throw new InfoException("comment_id 不能为空或空串");
 			}else if(!Util.isNum(comment_id)){
 				throw new InfoException("comment_id 不是数字串");
 			}
+			Integer comment_int = new Integer(comment_id);
+			
 			String action = map.get("action");
 			if(Util.isEmptyString(action)){
 				throw new InfoException("action 不能为空或空串");
 			}else if(!Util.isNum(action)){
 				throw new InfoException("action 不是数字串");
 			}
-			if(action.equals("1")){//文章点赞
-				this.commentServiceImpl.addLike(key,dua_id);
+			if(action.equals("1")){//赞
+				this.commentServiceImpl.addLike(key,dua_id,article_int,comment_int);
 			}else if(action.equals("0")){//文章点踩数
-				this.commentServiceImpl.addHate(key,dua_id);
+				this.commentServiceImpl.addHate(key,dua_id,article_int,comment_int);
 			}
 			result.put("status", "ok");
 		}catch(Exception e){
