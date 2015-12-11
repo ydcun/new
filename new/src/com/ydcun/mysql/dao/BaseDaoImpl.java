@@ -29,6 +29,13 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return this.getSession().createQuery(hql).list();
 	}
 	/***
+	 * sql语句
+	 */
+	@Override
+	public List<T> findAllSQL(String sql) {
+		return this.getSession().createSQLQuery(sql).list();
+	}
+	/***
 	 * 根据ID查找对象；
 	 */
 	@Override

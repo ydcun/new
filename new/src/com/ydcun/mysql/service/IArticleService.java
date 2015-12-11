@@ -1,5 +1,6 @@
 package com.ydcun.mysql.service;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -14,13 +15,6 @@ public interface IArticleService {
 	 * @throws Exception 
 	 */
 	public void addArticle(Article article) throws Exception;
-	/**
-	 * 获取所有的文章
-	 * @param id
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Article> findAllArticle() throws Exception;
 	/**
 	 * 根据Id获取一篇文章
 	 * @param id
@@ -46,5 +40,33 @@ public interface IArticleService {
 	 * @return
 	 */
 	public List<Article> findAllArticleByCode(String code);
+	/**
+	 * @param key 权限密钥
+	 * @param duaBI 用户dua_id
+	 * @param channel 类别的code
+	 * @param latestN 置顶获取最近多少条的数据
+	 * @param localid 客户端最新的文章id
+	 * @return
+	 */
+	public List<Article> getArticleList(String key, BigInteger dua_id, String channel, Integer latestN, Integer localid);
+	/**
+	 * 文章阅读数++
+	 * @param key 权限密钥
+	 * @param dua_id 用户dua_id
+	 * 
+	 */
+	public void addViews(String key, Integer dua_id);
+	/**
+	 * 文章点赞
+	 * @param key
+	 * @param dua_id
+	 */
+	public void addLike(String key, Integer dua_id);
+	/**
+	 * 文章点踩
+	 * @param key
+	 * @param dua_id
+	 */
+	public void addHate(String key, Integer dua_id);
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -64,7 +65,19 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article> implements IArticleDao 
 	 */
 	@Override
 	public List<Article> getAllArticleByCode(String code) {
-		String hql = "from Article where state=1 and channel.code='"+code+"'";
+		String hql = "from Article where status=1 and channel.code='"+code+"'";
+		return super.findAll(hql);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.dao.IArticleDao#findAllArticleByCode(java.lang.String, java.lang.Integer, java.lang.Integer)
+	 */
+	@Override
+	public List<Article> findAllArticleByCode(String channel, Integer latestN) {
+		String hql = "from Article where status=1 and channel.code='"+channel+"' order by id desc";
+		Query q = this.getSession().createQuery(hql);
+		q.setMaxResults(latestN);
+		q.setFirstResult(0);
 		return super.findAll(hql);
 	}
 	

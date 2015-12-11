@@ -38,6 +38,12 @@ public interface IBaseDao<T> {
 	 * @return
 	 */
 	List<T> findAll(String hql);
+	/**
+	 * 执行sql语句
+	 * @param sql
+	 * @return
+	 */
+	List<T> findAllSQL(String sql);
 
 
 }

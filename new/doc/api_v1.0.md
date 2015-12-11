@@ -8,8 +8,8 @@ basepath = http://115.28.40.128:8080/news
    	参数：
     {
         "key":"dua系统中app的key,是一个32位的字符串"，
-        "dua":"64位的整型：bigint/long long"，"channel":
-        "文章的类型。int型数字"，
+        "dua":"64位的整型：bigint/long long"，
+        "channel":"文章的类型。int型数字"，
         "latestN":"int整形，要获取最近的多少篇文章",
         "localid":"客户端上次更新的文章的最新id"
     }

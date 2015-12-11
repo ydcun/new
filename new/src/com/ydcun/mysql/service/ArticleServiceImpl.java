@@ -1,5 +1,7 @@
 package com.ydcun.mysql.service;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +29,6 @@ public class ArticleServiceImpl implements IArticleService {
 		this.articleDaoImpl.save(article);
 		
 	}
-
-	@Override
-	public List<Article> findAllArticle() throws Exception {
-		return this.articleDaoImpl.getAllArticle();
-	}
 	@Override
 	public Article findArticleById(Integer id) throws Exception {
 		if(id==null){
@@ -50,13 +47,49 @@ public class ArticleServiceImpl implements IArticleService {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/* (non-Javadoc)
-	 * @see com.ydcun.mysql.service.IArticleService#findAllArticleByCode()
-	 */
+	
 	@Override
 	public List<Article> findAllArticleByCode(String code) {
 		return this.articleDaoImpl.getAllArticleByCode(code);
 	}
-	
+
+	@Override
+	public List<Article> getArticleList(String key, BigInteger dua_id, String channel, Integer latestN,
+			Integer localid) {
+		List<Article> articleList = this.articleDaoImpl.findAllArticleByCode(channel,latestN);
+		List<Article> tempList = new ArrayList<Article>();
+		for(Article ar:articleList){
+			if(ar.getId()>localid){
+				tempList.add(ar);
+			}
+		}
+		return tempList;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.service.IArticleService#addViews(java.lang.String, java.lang.Integer)
+	 */
+	@Override
+	public void addViews(String key, Integer dua_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.service.IArticleService#addLike(java.lang.String, java.lang.Integer)
+	 */
+	@Override
+	public void addLike(String key, Integer dua_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.service.IArticleService#addHate(java.lang.String, java.lang.Integer)
+	 */
+	@Override
+	public void addHate(String key, Integer dua_id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

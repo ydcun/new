@@ -44,5 +44,11 @@ public interface IArticleDao {
 	 * @return
 	 */
 	public List<Article> getAllArticleByCode(String code);
+	/**
+	 * @param channel 文章code
+	 * @param latestN 获取最新的多少条数据
+	 * @return
+	 */
+	public List<Article> findAllArticleByCode(String channel, Integer latestN);
 
 }
