@@ -78,8 +78,8 @@ public class ArticleDaoImpl extends BaseDaoImpl<Article> implements IArticleDao 
 	 * @see com.ydcun.mysql.dao.IArticleDao#getTopList(java.lang.String)
 	 */
 	@Override
-	public List<Article> getTopList(String channel) {
-		String hql = "from Article where status=1 and channel.code='"+channel+"' and istop=1 order by id desc";
+	public List<Article> getTopList() {
+		String hql = "from Article where status=1  and istop=1 order by id desc";
 		Query q = this.getSession().createQuery(hql);
 		return q.list();
 	}

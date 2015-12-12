@@ -49,6 +49,6 @@ public interface IArticleDao extends IBaseDao<Article>{
 	 * @param channel
 	 * @return 
 	 */
-	public List<Article> getTopList(String channel);
+	public List<Article> getTopList();
 
 }

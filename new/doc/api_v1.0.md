@@ -86,7 +86,6 @@ basepath = http://xxxxx:8080/news
     {
     "key":"dua系统中app的key,是一个32位的字符串"，
     "dua":"64位的整型：bigint/long long"， 
-    "channel":"查询指定文章的类型code"
     }
     返回值：
     1.失败{"status":"error","data":"news服务器维护12：00~3：00中"}

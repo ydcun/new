@@ -184,13 +184,13 @@ public class ArticleController {
 			}
 			BigInteger dua_id = new BigInteger(dua);
 			
-			String channel = map.get("channel");//int 文章类型
-			if(Util.isEmptyString(channel)){
-				throw new InfoException("channel 不能为空或空串");
-			}
+//			String channel = map.get("channel");//int 文章类型
+//			if(Util.isEmptyString(channel)){
+//				throw new InfoException("channel 不能为空或空串");
+//			}
 			
 			// 实例化 
-			Article ar = articleServiceImpl.findHeadArticle(key,dua_id,channel);
+			Article ar = articleServiceImpl.findHeadArticle(key,dua_id);
 			if(ar==null){
 				throw new InfoException("没有找到该文章");
 			}

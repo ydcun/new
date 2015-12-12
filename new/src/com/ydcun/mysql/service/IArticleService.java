@@ -91,6 +91,6 @@ public interface IArticleService {
 	 * @return
 	 * @throws InfoException 
 	 */
-	public Article findHeadArticle(String key, BigInteger dua_id, String channel) throws InfoException;
+	public Article findHeadArticle(String key, BigInteger dua_id) throws InfoException;
 
 }

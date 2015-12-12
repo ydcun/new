@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -134,8 +135,11 @@ public class SendHttpPostUtil {
 	 */
 	public static boolean postDuaNew(String appKey,String dua_id,String previlige) {
 		try {
-			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,
-					"{'appKey':'"+appKey+"', 'duaid':'"+dua_id+"','cmd':'"+previlige+"'}");
+			Map<String,Object> temp = new HashMap<String, Object>();
+			temp.put("key",appKey);
+			temp.put("duaid",dua_id);
+			temp.put("cmd",previlige);
+			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,new Gson().toJson(temp));
 			Map<String,String> map = new Gson().fromJson(str, new TypeToken<Map<String,String>>(){}.getType());
 			System.out.println(map.get("reason"));
 			return "ok".equals(map.get("status"));
@@ -146,10 +150,13 @@ public class SendHttpPostUtil {
 	}
 	public static void main(String[] args) {
 		try {
-			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,
-					"{'appKey':'1', 'duaid':'1','cmd':'read'}");
+			Map<String,Object> temp = new HashMap<String, Object>();
+			temp.put("key","7ac66c0f148de9519b8bd264312c4d64");
+			temp.put("duaid","1");
+			temp.put("cmd","read");
+			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,new Gson().toJson(temp));
 			Map<String,String> map = new Gson().fromJson(str, new TypeToken<Map<String,String>>(){}.getType());
-			System.out.println(map.get("reason"));
+			System.out.println(map.get("status"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

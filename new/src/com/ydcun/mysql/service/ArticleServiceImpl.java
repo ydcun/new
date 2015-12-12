@@ -137,11 +137,11 @@ public class ArticleServiceImpl implements IArticleService {
 	 * @see com.ydcun.mysql.service.IArticleService#findHeadArticle(java.lang.String, java.math.BigInteger, java.lang.Integer)
 	 */
 	@Override
-	public Article findHeadArticle(String key, BigInteger dua_id,String channel) throws InfoException {
+	public Article findHeadArticle(String key, BigInteger dua_id) throws InfoException {
 		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
 			throw new InfoException("没有权限");
 		}
-		List<Article> list = this.articleDaoImpl.getTopList(channel);
+		List<Article> list = this.articleDaoImpl.getTopList();
 		if(list!=null && list.size()>0){
 			return list.get(0);
 		}
