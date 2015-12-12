@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ydcun.entity.Article;
 import com.ydcun.entity.Comment;
+import com.ydcun.exception.InfoException;
 
 /**
  *新闻评论
@@ -38,8 +39,9 @@ public interface ICommentService {
 	 * @param num_int 每页多少条
 	 * @param  aid_int 文章id
 	 * @return
+	 * @throws InfoException 
 	 */
-	public List<Comment> getArticleList(String key, BigInteger dua_id,Integer aid_int, Integer page_int, Integer num_int);
+	public List<Comment> getArticleList(String key, BigInteger dua_id,Integer aid_int, Integer page_int, Integer num_int) throws InfoException;
 	/**
 	 * 添加一个文章评论
 	 * @param key

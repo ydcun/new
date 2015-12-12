@@ -70,7 +70,10 @@ public class CommentController {
 			List<Comment> commlist =null;
 			//获取某文章的评论信息
 			commlist = commentServiceImpl.getArticleList(key,dua_id,aid_int,page_int,num_int); 
-			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
+			if(commlist==null){
+				throw new InfoException("没有查到数据");
+			}
+ 			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
 			Map<String,Object> subMap = new HashMap<String, Object>();
 			for(Comment comm:commlist){
 				subMap.put("id",comm.getId());//"1",
@@ -106,9 +109,9 @@ public class CommentController {
 				throw new InfoException("key 不能为空或空串");
 			}
 			
-			String article_id = map.get("article_id");//"文章的id int型数字"，
+			String article_id = map.get("aid");//"文章的id int型数字"，
 			if(Util.isEmptyString(article_id)){
-				throw new InfoException("article_id 不能为空或空串");
+				throw new InfoException("aid 不能为空或空串");
 			}
 			Integer aid = new Integer(article_id);
 			
@@ -117,9 +120,11 @@ public class CommentController {
 				throw new InfoException("content 不能为空或空串");
 			}
 			
-			String userid = map.get("userid");//"评论用户dua_id
+			String userid = map.get("dua");//"评论用户dua_id
 			if(Util.isEmptyString(content)){
-				throw new InfoException("userid 不能为空或空串");
+				throw new InfoException("dua 不能为空或空串");
+			}else if(!Util.isNum(userid)){
+				throw new InfoException("dua 不是数字串");
 			}
 			BigInteger userid_int = new BigInteger(userid);
 			
@@ -174,19 +179,19 @@ public class CommentController {
 			}
 			Integer dua_id = new Integer(dua);
 			
-			String article_id = map.get("article_id");
+			String article_id = map.get("aid");
 			if(Util.isEmptyString(article_id)){
-				throw new InfoException("article_id 不能为空或空串");
+				throw new InfoException("aid 不能为空或空串");
 			}else if(!Util.isNum(article_id)){
-				throw new InfoException("article_id 不是数字串");
+				throw new InfoException("aid 不是数字串");
 			}
 			Integer article_int = new Integer(article_id);
 			
-			String comment_id = map.get("comment_id");
+			String comment_id = map.get("cid");
 			if(Util.isEmptyString(comment_id)){
-				throw new InfoException("comment_id 不能为空或空串");
+				throw new InfoException("cid 不能为空或空串");
 			}else if(!Util.isNum(comment_id)){
-				throw new InfoException("comment_id 不是数字串");
+				throw new InfoException("cid 不是数字串");
 			}
 			Integer comment_int = new Integer(comment_id);
 			

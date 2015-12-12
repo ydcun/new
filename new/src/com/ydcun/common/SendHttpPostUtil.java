@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -21,6 +23,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class SendHttpPostUtil {
 	private static HttpClient hc = new DefaultHttpClient(); // 初始化一个HTTP的客户端对象
@@ -120,13 +125,35 @@ public class SendHttpPostUtil {
 		return null;
 	}
 
+	/**
+	 * 往dua服务器上验证new权限
+	 * @param appKey
+	 * @param dua_id
+	 * @param previlige
+	 * @return
+	 */
+	public static boolean postDuaNew(String appKey,String dua_id,String previlige) {
+		try {
+			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,
+					"{'appKey':'"+appKey+"', 'duaid':'"+dua_id+"','cmd':'"+previlige+"'}");
+			Map<String,String> map = new Gson().fromJson(str, new TypeToken<Map<String,String>>(){}.getType());
+			System.out.println(map.get("reason"));
+			return "ok".equals(map.get("status"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static void main(String[] args) {
 		try {
-			String str = SendHttpPostUtil.postBody("http://115.28.40.128:81/dua/news",
-					"{'mydataaa':'shihuan', 'numbbb':123456}");
-			System.out.println(str);
+			String str = SendHttpPostUtil.postBody(Constant.DUA_URL,
+					"{'appKey':'1', 'duaid':'1','cmd':'read'}");
+			Map<String,String> map = new Gson().fromJson(str, new TypeToken<Map<String,String>>(){}.getType());
+			System.out.println(map.get("reason"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

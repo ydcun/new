@@ -5,5 +5,5 @@ public class Constant {
 	public static final String FLAG_NO="0";
 	/**标记为有效**/
 	public static final String FLAG_YES="1";
-	public static final String DUA_URL="http://115.28.40.128:81/dua/news";
+	public static final String DUA_URL="http://115.28.40.128:81/dua/ruleAuthentication";
 }

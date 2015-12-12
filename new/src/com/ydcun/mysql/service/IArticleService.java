@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.ydcun.entity.Article;
+import com.ydcun.exception.InfoException;
 
 /**
  *新闻文章
@@ -47,8 +48,9 @@ public interface IArticleService {
 	 * @param latestN 置顶获取最近多少条的数据
 	 * @param localid 客户端最新的文章id
 	 * @return
+	 * @throws InfoException 
 	 */
-	public List<Article> getArticleList(String key, BigInteger dua_id, String channel, Integer latestN, Integer localid);
+	public List<Article> getArticleList(String key, BigInteger dua_id, String channel, Integer latestN, Integer localid) throws InfoException;
 	/**
 	 * 文章阅读数++
 	 * @param key 权限密钥
@@ -72,5 +74,23 @@ public interface IArticleService {
 	 * @param aid_int 
 	 */
 	public void addHate(String key, Integer dua_id, Integer aid_int) throws Exception;
+	/**
+	 * 根据id获取一篇文章
+	 * @param key
+	 * @param dua_id
+	 * @param aid_int
+	 * @return
+	 * @throws Exception 
+	 */
+	public Article findArticleById(String key, BigInteger dua_id, Integer aid_int) throws Exception;
+	/**
+	 * 获取某个分类的头条
+	 * @param key
+	 * @param dua_id
+	 * @param chenn_int
+	 * @return
+	 * @throws InfoException 
+	 */
+	public Article findHeadArticle(String key, BigInteger dua_id, String channel) throws InfoException;
 
 }

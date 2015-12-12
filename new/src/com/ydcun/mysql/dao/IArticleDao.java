@@ -44,5 +44,11 @@ public interface IArticleDao extends IBaseDao<Article>{
 	 * @return
 	 */
 	public List<Article> findAllArticleByCode(String channel, Integer latestN);
+	/**
+	 * 获取某个分类下的top列表
+	 * @param channel
+	 * @return 
+	 */
+	public List<Article> getTopList(String channel);
 
 }

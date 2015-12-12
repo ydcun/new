@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ydcun.common.SendHttpPostUtil;
 import com.ydcun.entity.Article;
 import com.ydcun.exception.InfoException;
 import com.ydcun.mysql.dao.IArticleDao;
@@ -57,7 +58,10 @@ public class ArticleServiceImpl implements IArticleService {
 
 	@Override
 	public List<Article> getArticleList(String key, BigInteger dua_id, String channel, Integer latestN,
-			Integer localid) {
+			Integer localid) throws InfoException {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
 		List<Article> articleList = this.articleDaoImpl.findAllArticleByCode(channel,latestN);
 		List<Article> tempList = new ArrayList<Article>();
 		for(Article ar:articleList){
@@ -73,6 +77,9 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public void addViews(String key, Integer dua_id,Integer aid_int) throws Exception {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
 		Article ar = this.articleDaoImpl.finAricleById(aid_int);
 		if(ar!=null){
 			ar.setViews(ar.getViews()==null?1:ar.getViews()+1);
@@ -87,6 +94,9 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public void addLike(String key, Integer dua_id,Integer aid_int) throws Exception {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
 		Article ar = this.articleDaoImpl.finAricleById(aid_int);
 		if(ar!=null){
 			ar.setLikes(ar.getLikes()==null?1:ar.getLikes()+1);
@@ -102,6 +112,9 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public void addHate(String key, Integer dua_id,Integer aid_int) throws Exception {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
 		Article ar = this.articleDaoImpl.finAricleById(aid_int);
 		if(ar!=null){
 			ar.setHate(ar.getHate()==null?1:ar.getHate()+1);
@@ -109,5 +122,29 @@ public class ArticleServiceImpl implements IArticleService {
 		}else{
 			throw new InfoException("没有对应的文章");
 		}
+	}
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.service.IArticleService#findArticleById(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Article findArticleById(String key,BigInteger dua_id, Integer aid_int) throws Exception {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
+		return this.articleDaoImpl.finAricleById(aid_int);
+	}
+	/* (non-Javadoc)
+	 * @see com.ydcun.mysql.service.IArticleService#findHeadArticle(java.lang.String, java.math.BigInteger, java.lang.Integer)
+	 */
+	@Override
+	public Article findHeadArticle(String key, BigInteger dua_id,String channel) throws InfoException {
+		if(!SendHttpPostUtil.postDuaNew(key, dua_id+"", "read")){
+			throw new InfoException("没有权限");
+		}
+		List<Article> list = this.articleDaoImpl.getTopList(channel);
+		if(list!=null && list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 }
