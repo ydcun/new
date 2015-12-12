@@ -72,9 +72,10 @@ public class ArticleController {
 			// 实例化 
 			List<Article> arlist = articleServiceImpl.getArticleList(key, dua_id, channel, num_int, aid_int); 
 			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
-			Map<String,Object> subMap = new HashMap<String, Object>();
+			Map<String,Object> subMap = null;
 			for(Article ar:arlist){
-				subMap.put("id",ar.getAid());//"1",
+				subMap = new HashMap<String, Object>();
+				subMap.put("id",ar.getId());//"1",
 		        subMap.put("title",ar.getTitle());//"题目",
 		        subMap.put("brief",ar.getBrief());//"简介",
 		        subMap.put("digest",ar.getDigest());//"摘要信息",

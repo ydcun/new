@@ -74,8 +74,9 @@ public class CommentController {
 				throw new InfoException("没有查到数据");
 			}
  			List<Map<String,Object>> subList = new ArrayList<Map<String,Object>>();
-			Map<String,Object> subMap = new HashMap<String, Object>();
+			Map<String,Object> subMap = null;
 			for(Comment comm:commlist){
+				subMap  = new HashMap<String, Object>();
 				subMap.put("id",comm.getId());//"1",
 		        subMap.put("content",comm.getContent());//"评论内容",
 		        subMap.put("time",DateUtil.getString(comm.getTime(),"yyyy-MM-dd HH:mm"));//"发布时间",
